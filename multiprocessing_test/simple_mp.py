@@ -9,6 +9,7 @@ def worker(i):
     return
 
 
+# Commenting the following 'if'-clause will raise exception on Windows
 if __name__ == '__main__':
     jobs = []
     for i in range(5):
