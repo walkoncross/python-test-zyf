@@ -9,11 +9,14 @@ def info(title):
     print 'process id:', os.getpid()
 
 def f(name):
-    info('function f')
+    info('==function f()')
     print 'hello', name
 
 if __name__ == '__main__':
-    info('main line')
+    info('==main line')
     p = Process(target=f, args=('bob',))
     p.start()
+    
+    print("This message might be printed either before or after fuction f()")
     p.join()
+    print('main line exit') # mind the whether this message is printed at the end of the console with/without p.join()
