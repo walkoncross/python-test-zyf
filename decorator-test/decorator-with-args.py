@@ -1,9 +1,13 @@
 from functools import wraps
 
 def tags(tag_name):
+    print tag_name
+#    print name
     def tags_decorator(func):
-        def func_wrapper(name):
-            return "<{0}>{1}</{0}>".format(tag_name, func(name))
+#        print name
+        def func_wrapper(name1):
+            print name1
+            return "<{0}>{1}</{0}>".format(tag_name, func(name1))
         return func_wrapper
     return tags_decorator
 
