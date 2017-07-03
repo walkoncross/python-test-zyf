@@ -17,7 +17,7 @@ lib boost_python ;
 
 project
   : requirements
-#    <include>/path/to/boost/python
+    <include>C:/boost/boost_1_64_0/
     <library>boost_python
 ;
 
