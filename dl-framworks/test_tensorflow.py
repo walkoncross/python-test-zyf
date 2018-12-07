@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
 import numpy as np
+
 import tensorflow as tf
 
 # N = 批大小, D_in = 输入维数, H = 中间维数, D_out = 输出维数

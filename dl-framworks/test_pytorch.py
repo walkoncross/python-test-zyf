@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
 import numpy as np
+
 import torch
 
 # N = 批大小, D_in = 输入维数, H = 中间维数, D_out = 输出维数
@@ -20,9 +22,6 @@ x = torch.tensor(x0, dtype=dtype)  # 注意 pytorch 默认即为 float64, 在此
 y = torch.tensor(y0, dtype=dtype)
 w1 = torch.tensor(w1_0, dtype=dtype, requires_grad=True)  # 需要梯度
 w2 = torch.tensor(w2_0, dtype=dtype, requires_grad=True)  # 需要梯度
-
-w1.attach_grad()  # 需要梯度
-w2.attach_grad()  # 需要梯度
 
 for t in range(n_epoch):
     y_pred = x.mm(w1).clamp(min=0).mm(w2)
