@@ -34,8 +34,13 @@ for t in range(n_epoch):
 
         loss = tf.reduce_sum((y - y_pred)**2.0) / N
 
-        grad_w1, grad_w2 = tape.gradients(loss, [w1, w2])
+    grad_w1, grad_w2 = tape.gradients(loss, [w1, w2])
 
-        # 注意 assign_sub会改w1和w2
-        w1_new = w1.assign_sub(learning_rate * grad_w1)
-        w2_new = w2.assign_sub(learning_rate * grad_w2)
+    # 注意 assign_sub会改w1和w2
+    w1_new = w1.assign_sub(learning_rate * grad_w1)
+    w2_new = w2.assign_sub(learning_rate * grad_w2)
+
+    print('=== EPOCH', t, 'loss', loss, '===')
+    print('out', y_pred)
+    print('w1_new', w1)
+    print('w2_new', w2, '\n')
