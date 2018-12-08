@@ -38,7 +38,7 @@ w2_new = w2.assign_sub(learning_rate * grad_w2)
 
 # 运行TensorFlow静态图
 
-with tf.session() as sess:
+with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for t in range(n_epoch):
         loss_, y_pred_, w1_, w2_ = sess.run(
