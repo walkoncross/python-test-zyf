@@ -4,6 +4,8 @@ import os
 
 
 def f(x):
+    print '='*20
+    print 'pid=', os.getpid()
     return x * x
 
 
