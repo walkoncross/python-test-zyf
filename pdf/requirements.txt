@@ -1,2 +1,3 @@
 pdftotext
 pdf2image
+PyPDF2
