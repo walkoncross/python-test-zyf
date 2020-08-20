@@ -35,7 +35,7 @@ im = imread('material/00218_mouth.jpg', as_gray=True)
 
 # Compute the Canny filter for two values of sigma
 edges1 = feature.canny(im, sigma=1)
-edges2 = feature.canny(im, sigma=2)
+edges2 = feature.canny(im, sigma=3)
 
 # display results
 fig, (ax1, ax2, ax3) = plt.subplots(nrows=1, ncols=3, figsize=(8, 3),

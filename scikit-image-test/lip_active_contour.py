@@ -77,8 +77,9 @@ def extend_rect(x_min, y_min, x_max, y_max, ratio=0.25):
 
 
 img_path = 'material/00218.jpg'
-save_path = 'material/00218_mouth.jpg'
+mouth_img_path = 'material/00218_mouth.jpg'
 lmks_path = 'material/00218_lmks.txt'
+mouth_lmks_path = 'material/00218_lmks_mouth.txt'
 # scale = 4.0
 
 img = cv2.imread(img_path)
@@ -114,7 +115,8 @@ inner_mouth_upper_index = [116, 134, 135, 66, 136, 137, 67, 138, 139, 68,
                            140, 141, 117]
 inner_mouth_lower_index = [142, 143, 69, 144, 145, 70, 146, 147, 71, 148, 149]
 
-inner_mouth_lmks = lmks[inner_mouth_upper_index, :]
+inner_mouth_lmks = lmks[inner_mouth_index, :]
+# inner_mouth_lmks = lmks[inner_mouth_upper_index, :]
 print('inner mouth landmarks: {}'.format(inner_mouth_lmks))
 
 # crop face area
@@ -125,7 +127,7 @@ print("bounding box: {}".format((x_min, y_min, x_max, y_max)))
 print("extended bounding box: {}".format((x_min, y_min, x_max, y_max)))
 
 img = img[y_min:y_max, x_min:x_max, ::-1]
-imsave(save_path, img)
+imsave(mouth_img_path, img)
 ############
 
 outer_mouth_lmks -= np.array([y_min, x_min])
@@ -133,6 +135,14 @@ print('outer mouth landmarks (after crop): {}'.format(outer_mouth_lmks))
 
 inner_mouth_lmks -= np.array([y_min, x_min])
 print('inner mouth landmarks (after crop): {}'.format(inner_mouth_lmks))
+
+# lmks_cropped = lmks - np.array([y_min, x_min])
+# print('landmarks (after crop): {}'.format(lmks_cropped))
+# lmks_cropped = lmks_cropped[:,:-1] # (r,c) to (x,y)
+# np.savetxt(mouth_lmks_path, lmks_cropped.flatten(), fmt='%.2f')
+mouth_lmks = np.vstack([outer_mouth_lmks, inner_mouth_lmks])
+mouth_lmks = mouth_lmks[:,::-1] # (r,c) to (x,y)
+np.savetxt(mouth_lmks_path, mouth_lmks.flatten(), fmt='%.2f')
 
 img_skimage = opencv2skimage(img)
 img_skimage_gray = rgb2gray(img_skimage)

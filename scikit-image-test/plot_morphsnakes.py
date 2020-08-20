@@ -53,8 +53,9 @@ from skimage import data, img_as_float
 from skimage.segmentation import (morphological_chan_vese,
                                   morphological_geodesic_active_contour,
                                   inverse_gaussian_gradient,
-                                  checkerboard_level_set)
-
+                                  checkerboard_level_set,
+                                  circle_level_set)
+from skimage.io import imread
 
 def store_evolution_in(lst):
     """Returns a callback function to store the evolution of the level sets in
@@ -68,10 +69,17 @@ def store_evolution_in(lst):
 
 
 # Morphological ACWE
-image = img_as_float(data.camera())
+# image = img_as_float(data.camera())
+im = imread('material/00218_mouth.jpg', as_gray=True)
+image = img_as_float(im)
+print('image.shape: ', image.shape)
 
 # Initial level set
+# init_ls = checkerboard_level_set(image.shape, 6)
 init_ls = checkerboard_level_set(image.shape, 6)
+print('init_ls.shape: ', init_ls.shape)
+print('init level set: ', init_ls.shape)
+
 # List with intermediate results for plotting the evolution
 evolution = []
 callback = store_evolution_in(evolution)
@@ -100,7 +108,10 @@ ax[1].set_title(title, fontsize=12)
 
 
 # Morphological GAC
-image = img_as_float(data.coins())
+# image = img_as_float(data.coins())
+im = imread('material/00218_mouth.jpg', as_gray=True)
+image = img_as_float(im)
+
 gimage = inverse_gaussian_gradient(image)
 
 # Initial level set
