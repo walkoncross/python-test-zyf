@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 # """
 # Extract text content from pdf file, and save into a .txt file.
@@ -29,7 +29,8 @@ def extract_text_from_pdf(pdf_fn, output_fn=None, password_protected=False):
     """
     print("===> Input .pdf file: ", pdf_fn)
     if not output_fn:
-        output_fn = osp.splitext(pdf_fn)[0] + '.txt'
+        # output_fn = osp.splitext(pdf_fn)[0] + '.extracted_text.txt'
+        output_fn = pdf_fn + '.extracted_text.txt'
     print("===> output .txt file: ", output_fn)
 
     # Load your PDF

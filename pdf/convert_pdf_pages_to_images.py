@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 # """
 # Convert pages in .pdf file into .jpg images.
@@ -58,8 +58,8 @@ if __name__ == '__main__':
         parser = argparse.ArgumentParser(
             description="Extract text content from pdf file, and save into a .txt file.")
         parser.add_argument('pdf_fn', help="Path to input .pdf file")
-        parser.add_argument('save_dir', nargs='?', default='./converted_images/', help='Output dir, '
-                            'default: ./converted_images/')
+        parser.add_argument('save_dir', nargs='?', default='./pdf_converted_images/', help='Output dir, '
+                            'default: ./pdf_converted_images/')
 
         return parser
 
