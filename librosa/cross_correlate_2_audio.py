@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
+import sys
 import json
 import numpy as np
 
@@ -9,7 +10,7 @@ import librosa.display
 from yin import compute_yin
 
 
-def cross_correlate(audio1, audio2, load_seconds=5, corr_seconds=2, plot=False):
+def cross_correlate(audio1, audio2, load_seconds=10, corr_seconds=5, plot=False):
     sig1, sr1 = librosa.load(audio1, duration=load_seconds)
     # if sig1.ndim > 1:
     #     sig1 = sig1[0]
@@ -86,7 +87,11 @@ def cross_correlate(audio1, audio2, load_seconds=5, corr_seconds=2, plot=False):
 
 
 if __name__ == '__main__':
-    audio1 = '/Users/zhaoyafei/work/combine_pufa01_new.wav'
-    audio2 = '/Users/zhaoyafei/work/demo_pufa_man.wav'
+    if len(sys.argv)>2:
+        audio1 = sys.argv[1]
+        audio2 = sys.argv[2]
+    else:
+        audio1 = '/Users/zhaoyafei/work/combine_pufa01_new.wav'
+        audio2 = '/Users/zhaoyafei/work/demo_pufa_man.wav'
 
     cross_correlate(audio1, audio2, plot=True)
